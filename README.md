@@ -61,7 +61,7 @@ pip install -e .
 设置环境变量，告诉 promptimal 使用你的 API：
 
 ```bash
-export OPENAI_API_KEY="sk-hnOC1NXCUidvTpYGWK9TBWa1hU6E5zSNful4ohWIclaHBU66"
+export OPENAI_API_KEY="sk-<your key>"
 export OPENAI_API_BASE="https://apinexus.net/v1"
 export OPENAI_MODEL="gpt-5.2"
 ```
