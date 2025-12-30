@@ -37,7 +37,13 @@ async def optimize(
     evaluator: Optional[callable] = None,
 ):
     evaluate = evaluate_fitness if not evaluator else evaluator
-    openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY", api_key))
+    # Support custom API base URL via environment variable
+    api_key = os.getenv("OPENAI_API_KEY", api_key)
+    base_url = os.getenv("OPENAI_API_BASE", None)
+    if base_url:
+        openai = AsyncOpenAI(api_key=api_key, base_url=base_url)
+    else:
+        openai = AsyncOpenAI(api_key=api_key)
     start_time = time.time()
 
     best_candidate = initial_prompt = PromptCandidate(prompt)

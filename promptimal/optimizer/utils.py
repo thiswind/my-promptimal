@@ -1,5 +1,6 @@
 # Standard library
 import json
+import os
 import random
 from statistics import mean
 from typing import List, Tuple
@@ -42,9 +43,10 @@ async def init_population(
         "role": "user",
         "content": f"Generate {population_size} better versions of the following prompt:\n\n<prompt>\n{prompt}\n</prompt>",
     }
+    model = os.getenv("OPENAI_MODEL", "gpt-4o")
     response = await openai.chat.completions.create(
         messages=[system_message, user_message],
-        model="gpt-4o",
+        model=model,
         temperature=1.0,
         response_format={
             "type": "json_schema",
@@ -94,6 +96,7 @@ async def evaluate_fitness(
         return candidate, TokenCount(0, 0)
 
     # Generate `n_samples` self-evaluations
+    model = os.getenv("OPENAI_MODEL", "gpt-4o")
     response = await openai.chat.completions.create(
         messages=[
             {
@@ -118,7 +121,7 @@ async def evaluate_fitness(
                 "content": f"Evaluate the following prompt:\n\n<prompt>\n{candidate.prompt}\n</prompt>",
             },
         ],
-        model="gpt-4o",
+        model=model,
         temperature=1.0,
         response_format={
             "type": "json_schema",
@@ -180,9 +183,10 @@ async def crossover(
         "role": "user",
         "content": f"Combine the following prompts into a better one:\n\n<prompt_1>\n{parent1.prompt}\n</prompt_1>\n\n<prompt_2>\n{parent2.prompt}\n</prompt_2>",
     }
+    model = os.getenv("OPENAI_MODEL", "gpt-4o")
     response = await openai.chat.completions.create(
         messages=[system_message, user_message],
-        model="gpt-4o",
+        model=model,
         temperature=1.0,
         response_format={
             "type": "json_schema",
