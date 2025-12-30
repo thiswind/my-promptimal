@@ -8,9 +8,15 @@ from promptimal.optimizer.main import optimize
 async def test_optimize():
     """Test prompt optimization with custom API"""
     # Set environment variables
-    os.environ["OPENAI_API_KEY"] = "sk-hnOC1NXCUidvTpYGWK9TBWa1hU6E5zSNful4ohWIclaHBU66"
+    # Note: Set OPENAI_API_KEY in your environment or use os.getenv()
+    api_key = os.getenv("OPENAI_API_KEY", "")
+    if not api_key:
+        print("Warning: OPENAI_API_KEY not set. Please set it in your environment.")
+        return
+    
+    os.environ["OPENAI_API_KEY"] = api_key
     os.environ["OPENAI_API_BASE"] = "https://apinexus.net/v1"
-    os.environ["OPENAI_MODEL"] = "gpt-5.2"
+    os.environ["OPENAI_MODEL"] = "gpt-5"
     
     print("Starting prompt optimization test...")
     print(f"API Base: {os.environ.get('OPENAI_API_BASE')}")

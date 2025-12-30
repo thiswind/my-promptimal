@@ -14,7 +14,7 @@ cd promptimal
 conda activate base
 export OPENAI_API_KEY="your_api_key"
 export OPENAI_API_BASE="https://apinexus.net/v1"
-export OPENAI_MODEL="gpt-5.2"
+export OPENAI_MODEL="gpt-5"
 python examples/hello_world.py
 ```
 

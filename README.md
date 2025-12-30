@@ -22,7 +22,7 @@ Promptimal 是一个使用遗传算法优化 AI 提示词的命令行工具。�
 
 本指南专门针对：
 - 使用 **apinexus.net API** 的用户
-- 使用 **gpt-5.2** 模型的用户
+- 使用 **gpt-5** 模型的用户
 - 需要在 **本地环境** 部署和使用的用户
 - **初学者** 和 **学生** 学习使用
 
@@ -63,7 +63,7 @@ pip install -e .
 ```bash
 export OPENAI_API_KEY="sk-<your key>"
 export OPENAI_API_BASE="https://apinexus.net/v1"
-export OPENAI_MODEL="gpt-5.2"
+export OPENAI_MODEL="gpt-5"
 ```
 
 **注意**：
@@ -87,7 +87,7 @@ python examples/hello_world.py
 Promptimal Hello World 示例
 ============================================================
 API 服务: https://apinexus.net/v1
-使用模型: gpt-5.2
+使用模型: gpt-5
 ============================================================
 
 初始提示词: Hello, world!
@@ -175,7 +175,7 @@ async def optimize_prompt():
     # 1. 配置 API
     os.environ["OPENAI_API_KEY"] = "your_api_key"
     os.environ["OPENAI_API_BASE"] = "https://apinexus.net/v1"
-    os.environ["OPENAI_MODEL"] = "gpt-5.2"
+    os.environ["OPENAI_MODEL"] = "gpt-5"
     
     # 2. 运行优化
     async for step in optimize(
@@ -249,7 +249,7 @@ Error: Model not found
 ```
 
 **解决方案**：
-1. 确认模型名称是否正确（应该是 `gpt-5.2`）
+1. 确认模型名称是否正确（应该是 `gpt-5`）
 2. 检查环境变量 `OPENAI_MODEL` 是否设置
 3. 如果使用其他模型，确保模型名称正确
 
@@ -261,7 +261,7 @@ Error: Model not found
 ```bash
 export OPENAI_API_KEY="your_api_key"
 export OPENAI_API_BASE="https://apinexus.net/v1"
-export OPENAI_MODEL="gpt-5.2"
+export OPENAI_MODEL="gpt-5"
 ```
 
 然后执行：
@@ -395,7 +395,7 @@ for prompt, improve in prompts:
 **验证修改**：
 运行 `examples/hello_world.py` 时，你应该看到：
 - API 服务显示为 `https://apinexus.net/v1`
-- 使用模型显示为 `gpt-5.2`
+- 使用模型显示为 `gpt-5`
 - 优化过程正常运行
 
 ---

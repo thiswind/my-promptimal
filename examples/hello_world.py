@@ -21,9 +21,15 @@ async def hello_world():
     
     # 步骤 1: 配置 API 环境变量
     # 这些环境变量告诉 promptimal 使用哪个 API 服务
-    os.environ["OPENAI_API_KEY"] = "sk-hnOC1NXCUidvTpYGWK9TBWa1hU6E5zSNful4ohWIclaHBU66"
+    # 注意：请在你的环境中设置 OPENAI_API_KEY，或使用 os.getenv() 从环境变量读取
+    api_key = os.getenv("OPENAI_API_KEY", "")
+    if not api_key:
+        print("错误：未设置 OPENAI_API_KEY。请在环境中设置它。")
+        return
+    
+    os.environ["OPENAI_API_KEY"] = api_key
     os.environ["OPENAI_API_BASE"] = "https://apinexus.net/v1"
-    os.environ["OPENAI_MODEL"] = "gpt-5.2"
+    os.environ["OPENAI_MODEL"] = "gpt-5"
     
     print("=" * 60)
     print("Promptimal Hello World 示例")
